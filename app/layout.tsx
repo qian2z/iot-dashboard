@@ -1,5 +1,7 @@
+import { Grid, GridItem } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import NavBar from "./components/NavBar";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -18,7 +20,31 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Grid
+            templateAreas={`"nav header"
+                  "nav main"
+                  "nav footer"`}
+            gridTemplateRows={"60px 1fr 30px"}
+            gridTemplateColumns={"150px 1fr"}
+            minHeight="100vh"
+            color="blackAlpha.700"
+            fontWeight="bold"
+          >
+            <GridItem pl="2" area={"header"}>
+              <NavBar />
+            </GridItem>
+            <GridItem pl="2" bg="pink.300" area={"nav"}>
+              Nav
+            </GridItem>
+            <GridItem pl="2" bg="green.300" area={"main"}>
+              {children}
+            </GridItem>
+            <GridItem pl="2" bg="blue.300" area={"footer"}>
+              Footer
+            </GridItem>
+          </Grid>
+        </Providers>
       </body>
     </html>
   );
