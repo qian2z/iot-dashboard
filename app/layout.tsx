@@ -1,7 +1,8 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { Flex, Grid, GridItem } from "@chakra-ui/react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NavBar from "./components/NavBar";
+import SideBar from "./components/SideBar";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -26,22 +27,33 @@ export default function RootLayout({
                   "nav main"
                   "nav footer"`}
             gridTemplateRows={"60px 1fr 30px"}
-            gridTemplateColumns={"150px 1fr"}
+            gridTemplateColumns={"300px 1fr"}
             minHeight="100vh"
             color="blackAlpha.700"
             fontWeight="bold"
           >
-            <GridItem pl="2" area={"header"}>
+            <GridItem
+              pl="3"
+              area={"header"}
+              borderBottom="1px"
+              borderColor="gray.200"
+            >
               <NavBar />
             </GridItem>
-            <GridItem pl="2" bg="pink.300" area={"nav"}>
-              Nav
+            <GridItem area={"nav"} borderRight="1px" borderColor="gray.200">
+              <SideBar />
             </GridItem>
-            <GridItem pl="2" bg="green.300" area={"main"}>
+            <GridItem pl="3" area={"main"}>
               {children}
             </GridItem>
-            <GridItem pl="2" bg="blue.300" area={"footer"}>
-              Footer
+            <GridItem pl="3" area={"footer"}>
+              <Flex
+                className="w-full h-full"
+                justify="center"
+                alignItems="center"
+              >
+                &copy; 2023-2024 HWUM IoT Agriculture | All Rights Reserved
+              </Flex>
             </GridItem>
           </Grid>
         </Providers>
